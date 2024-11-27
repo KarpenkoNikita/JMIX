@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="pd">
+        <dropForeignKeyConstraint baseTableName="PD_ZAYAVKA" constraintName="FK_PD_ZAYAVKA_ON_KAB"/>
+    </changeSet>
+    <changeSet id="2" author="pd">
+        <dropIndex indexName="idx_pd_zayavka_kab" tableName="pd_zayavka"/>
+    </changeSet>
+    <changeSet id="3" author="pd">
+        <addForeignKeyConstraint baseColumnNames="KAB_ID" baseTableName="PD_ZAYAVKA"
+                                 constraintName="FK_PD_ZAYAVKA_ON_KAB" onDelete="SET NULL" referencedColumnNames="ID"
+                                 referencedTableName="PD_KABINET"/>
+    </changeSet>
+    <changeSet id="4" author="pd">
+        <addNotNullConstraint columnDataType="VARCHAR(255)" columnName="DESCRIPTION" tableName="PD_KABINET"
+                              validate="true"/>
+    </changeSet>
+    <changeSet id="5" author="pd">
+        <addNotNullConstraint columnDataType="VARCHAR(255)" columnName="NAME" tableName="PD_ADRESS" validate="true"/>
+    </changeSet>
+    <changeSet id="6" author="pd">
+        <dropColumn columnName="NUMBER_" tableName="PD_KABINET"/>
+    </changeSet>
+    <changeSet id="7" author="pd">
+        <addColumn tableName="PD_KABINET">
+            <column name="NUMBER_" type="INT">
+                <constraints nullable="false" validateNullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="8" author="pd">
+        <addNotNullConstraint columnDataType="INT" columnName="NUMBER_" tableName="PD_KABINET" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

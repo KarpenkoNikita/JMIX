@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="pd">
+        <createTable tableName="PD_ADRESS">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PD_ADRESS"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="pd">
+        <createTable tableName="PD_COMPANY">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PD_COMPANY"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="pd">
+        <createTable tableName="PD_KABINET">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PD_KABINET"/>
+            </column>
+            <column name="NUMBER_" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="pd">
+        <createTable tableName="PD_ZAYAVKA">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_PD_ZAYAVKA"/>
+            </column>
+            <column name="FIO" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATATIME" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="KAB_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ADRESS_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMPANY_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PROBLEM" type="VARCHAR(255)"/>
+            <column name="COMMENT_" type="CLOB"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="pd">
+        <createIndex indexName="IDX_PD_ZAYAVKA_ADRESS" tableName="PD_ZAYAVKA">
+            <column name="ADRESS_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="ADRESS_ID" baseTableName="PD_ZAYAVKA"
+                                 constraintName="FK_PD_ZAYAVKA_ON_ADRESS" referencedColumnNames="ID"
+                                 referencedTableName="PD_ADRESS"/>
+    </changeSet>
+    <changeSet id="6" author="pd">
+        <createIndex indexName="IDX_PD_ZAYAVKA_COMPANY" tableName="PD_ZAYAVKA">
+            <column name="COMPANY_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="COMPANY_ID" baseTableName="PD_ZAYAVKA"
+                                 constraintName="FK_PD_ZAYAVKA_ON_COMPANY" referencedColumnNames="ID"
+                                 referencedTableName="PD_COMPANY"/>
+    </changeSet>
+    <changeSet id="7" author="pd">
+        <createIndex indexName="IDX_PD_ZAYAVKA_KAB" tableName="PD_ZAYAVKA">
+            <column name="KAB_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="KAB_ID" baseTableName="PD_ZAYAVKA"
+                                 constraintName="FK_PD_ZAYAVKA_ON_KAB" referencedColumnNames="ID"
+                                 referencedTableName="PD_KABINET"/>
+    </changeSet>
+</databaseChangeLog>

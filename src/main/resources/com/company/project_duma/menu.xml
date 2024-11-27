@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://jmix.io/schema/flowui/menu">
+
+    <menu id="application" title="msg://com.company.project_duma/menu.application.title" opened="true">
+        <item view="pd_User.list" title="msg://com.company.project_duma.view.user/UserListView.title"/>
+        <item view="pd_Adress.list" title="msg://com.company.project_duma.view.adress/adressListView.title"/>
+        <item view="pd_Company.list" title="msg://com.company.project_duma.view.company/companyListView.title"/>
+        <item view="pd_Zayavka.list" title="msg://com.company.project_duma.view.zayavka/zayavkaListView.title"/>
+        <item view="pd_Kabinet.list" title="msg://com.company.project_duma.view.kabinet/kabinetsListView.title"/>
+
+    </menu>
+
+</menu-config>
